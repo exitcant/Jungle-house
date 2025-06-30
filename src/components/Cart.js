@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import '../styles/Cart.css'
 
-function Cart() {
-	const monsteraPrice = 8
-	const [cart, updateCart] = useState(0)
+function Cart({ cart = [], updateCart }) {
 	const [isOpen, setIsOpen] = useState(true)
+
+	const total = cart.reduce(
+		(acc, plant) => acc + plant.quantity * plant.price,
+		0
+	)
 
 	return isOpen ? (
 		<div className='jh-cart'>
@@ -15,9 +18,13 @@ function Cart() {
 				Close
 			</button>
 			<h2>Cart</h2>
-			<div>Monstera : {monsteraPrice}€</div>
-			<button onClick={() => updateCart(cart + 1)}>Add</button>
-			<h3>Total : {monsteraPrice * cart}€</h3>
+			{cart.map(({ name, price, quantity }, index) => (
+				<div key={`${name}-${index}`}>
+					{name} {price}$ x {quantity}
+				</div>
+			))}
+			<h3>Total: {total}$</h3>
+			<button onClick={() => updateCart([])}>Empty the cart</button>
 		</div>
 	) : (
 		<div className='jh-cart-closed'>

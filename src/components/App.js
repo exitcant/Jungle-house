@@ -1,7 +1,9 @@
 import Banner from './Banner'
 import logo from '../assets/logo.png'
-// import Cart from './Cart'
+import Cart from './Cart'
+import Footer from './Footer'
 import Shopping from './Shopping'
+import '../styles/Layout.css'
 
 function App() {
 	return (
@@ -10,8 +12,11 @@ function App() {
 				<img src={logo} alt='Jungle House' className='jh-logo' />
 				<h1 className='jh-title'>Jungle House</h1>
 			</Banner>
-			{/* <Cart /> */}
-			<Shopping />
+			<div className='jh-layout-inner'>
+				<Cart />
+				<Shopping />
+			</div>
+			<Footer />
 		</div>
 	)
 }
